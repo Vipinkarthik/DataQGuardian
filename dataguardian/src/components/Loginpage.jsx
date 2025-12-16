@@ -9,62 +9,53 @@ function Loginpage() {
   const handleLogin = (e) => {
     e.preventDefault();
 
-    // Temporary login validation (for demo)
     if (email && password) {
-      console.log("Login success:", email);
-      navigate("/dashboard"); // 🔥 REDIRECT AFTER LOGIN
+      localStorage.setItem("auth", "true"); // 🔑 AUTH FLAG
+      navigate("/dashboard");               // 🔥 REDIRECT
     }
   };
 
   return (
     <div className="min-h-screen flex">
 
-      {/* LEFT SIDE IMAGE */}
       <div className="w-1/2 hidden lg:block">
         <img
-          src="https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-          alt="login visual"
+          src="https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg"
+          alt="login"
           className="w-full h-full object-cover"
         />
       </div>
 
-      {/* RIGHT SIDE LOGIN FORM */}
       <div className="w-full lg:w-1/2 flex items-center justify-center bg-black">
         <form
           onSubmit={handleLogin}
-          className="bg-gray-900 px-10 py-12 rounded-xl shadow-lg w-full max-w-md"
+          className="bg-gray-900 px-10 py-12 rounded-xl w-full max-w-md"
         >
           <h2 className="text-3xl font-bold text-white text-center mb-8">
             Login to DataGuardian
           </h2>
 
-          <label className="block text-gray-300 mb-2">Email</label>
           <input
             type="email"
-            className="w-full p-3 rounded-md bg-gray-800 text-white border border-gray-700 focus:border-blue-500 mb-6"
-            placeholder="Enter your email"
+            placeholder="Email"
+            className="w-full p-3 mb-6 bg-gray-800 text-white rounded"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required
           />
 
-          <label className="block text-gray-300 mb-2">Password</label>
           <input
             type="password"
-            className="w-full p-3 rounded-md bg-gray-800 text-white border border-gray-700 focus:border-blue-500 mb-8"
-            placeholder="Enter your password"
+            placeholder="Password"
+            className="w-full p-3 mb-8 bg-gray-800 text-white rounded"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
           />
 
-          <button
-            type="submit"
-            className="w-full p-3 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 transition"
-          >
+          <button className="w-full p-3 bg-blue-600 rounded font-semibold">
             Login
           </button>
-
         </form>
       </div>
     </div>
