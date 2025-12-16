@@ -1,13 +1,19 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 function Loginpage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const navigate = useNavigate();
 
   const handleLogin = (e) => {
     e.preventDefault();
-    console.log("Login with:", email, password);
-    // TODO: Connect actual API
+
+    // Temporary login validation (for demo)
+    if (email && password) {
+      console.log("Login success:", email);
+      navigate("/dashboard"); // 🔥 REDIRECT AFTER LOGIN
+    }
   };
 
   return (
@@ -22,7 +28,7 @@ function Loginpage() {
         />
       </div>
 
-      {/* RIGHT SIDE FORM */}
+      {/* RIGHT SIDE LOGIN FORM */}
       <div className="w-full lg:w-1/2 flex items-center justify-center bg-black">
         <form
           onSubmit={handleLogin}
@@ -45,7 +51,7 @@ function Loginpage() {
           <label className="block text-gray-300 mb-2">Password</label>
           <input
             type="password"
-            className="w-full p-3 rounded-md bg-gray-800 text-white border border-gray-700 focus:border-blue-500 mb-6"
+            className="w-full p-3 rounded-md bg-gray-800 text-white border border-gray-700 focus:border-blue-500 mb-8"
             placeholder="Enter your password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
@@ -59,12 +65,6 @@ function Loginpage() {
             Login
           </button>
 
-          <p className="text-sm text-gray-500 text-center mt-4">
-            Don’t have an account?{" "}
-            <a href="/register" className="text-blue-500 underline">
-              Sign up
-            </a>
-          </p>
         </form>
       </div>
     </div>
